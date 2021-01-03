@@ -1,6 +1,6 @@
 # !/bin/python
 
-def hang_the_player(count):
+def hang_the_player(count, correct):
     if count == 1:
         print('\n\033[1;31;40m 4 tries remainning !! \n')
         print("    ________ \n"
@@ -62,6 +62,7 @@ def hang_the_player(count):
               "   |       / \ \n"
               "___|___        \n")
         print('\n\n\033[1;31;40m **** GAME OVER ****\n\n\n')
+        print('the right word is {}'.format(correct))
 
 
 def help_menu():

@@ -7,16 +7,16 @@ global the_word
 global hash_word
 
 
-print('\n \033[1;32;40m  Hi there, Welcome to the Hangman game \n')
-time.sleep(1.1337)
-name = input('\033[0;37;40m Please enter your name : ')
-tls.h_t_g()
-time.sleep(1.1337)
-print("\n \033[1;32;40m Let's begin the game\033[1;36;40m  {}".format(name))
-time.sleep(1.1337)
-random_words = ['hello', 'world', name, 'beautiful', 'awesome', 'hangman', 'fun', 'game', 'congratulation']
-the_word = random.choice(random_words)
-hash_word = '-'*len(the_word)
+# print('\n \033[1;32;40m  Hi there, Welcome to the Hangman game \n')
+# time.sleep(1.1337)
+# name = input('\033[0;37;40m Please enter your name : ')
+# tls.h_t_g()
+# time.sleep(1.1337)
+# print("\n \033[1;32;40m Let's begin the game\033[1;36;40m  {}".format(name))
+# time.sleep(1.1337)
+# random_words = ['hello', 'world', name, 'beautiful', 'awesome', 'hangman', 'fun', 'game', 'congratulation']
+# the_word = random.choice(random_words)
+# hash_word = '-'*len(the_word)
 
 
 def thats_correct(pl_guess):
@@ -69,7 +69,7 @@ def game_loop(random_words):
             print('\n\033[1;31;40m PLEASE ENTER ONE LETTER AT A TIME !\n type help for more information.\n')
             continue
         elif pl_guess not in the_word:
-            tls.hang_the_player(count)
+            tls.hang_the_player(count, the_word)
             count += 1
         elif pl_guess in the_word:
             thats_correct(pl_guess)
@@ -80,6 +80,16 @@ def game_loop(random_words):
             re_load_the_game(1)
 
 
-print('\n \033[0;37;40m This is the Hangman Word : {}   As you see it contains {} letters, Please enter your guess '.format(hash_word, len(the_word)))
-
-game_loop(random_words)
+if __name__ == "__main__":
+    print('\n \033[1;32;40m  Hi there, Welcome to the Hangman game \n')
+    time.sleep(1.1337)
+    name = input('\033[0;37;40m Please enter your name : ')
+    tls.h_t_g()
+    time.sleep(1.1337)
+    print("\n \033[1;32;40m Let's begin the game\033[1;36;40m  {}".format(name))
+    time.sleep(1.1337)
+    random_words = ['hello', 'world', name, 'beautiful', 'awesome', 'hangman', 'fun', 'game', 'congratulation', 'anime', 'football', 'movies', 'tvshows']
+    the_word = random.choice(random_words)
+    hash_word = '-'*len(the_word)
+    print('\n \033[0;37;40m This is the Hangman Word : {}   As you see it contains {} letters, Please enter your guess '.format(hash_word, len(the_word)))
+    game_loop(random_words)
