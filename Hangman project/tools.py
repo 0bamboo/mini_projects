@@ -62,7 +62,7 @@ def hang_the_player(count, correct):
               "   |       / \ \n"
               "___|___        \n")
         print('\n\n\033[1;31;40m **** GAME OVER ****\n\n\n')
-        print('the right word is {}'.format(correct))
+        print('\033[1;34;40m The right answer is [ {} ]\033[0;37;40m'.format(correct))
 
 
 def help_menu():
