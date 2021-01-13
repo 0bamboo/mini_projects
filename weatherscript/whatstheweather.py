@@ -18,9 +18,9 @@ def _get_weather():
         feel = 'hot'
     weather = str(weather) + ' °C'
     print(f"""\033[1;32;40m
-            THE WEATHER TODAY IN {city} AT {time}:
+            THE WEATHER TODAY IN {city}
         \033[1;36;40m
-        The tempeture is {weather} , it's {feel}
+         AT {time}, The tempeture is {weather} , it's {feel}
     """)
 
 if __name__ == '__main__':
