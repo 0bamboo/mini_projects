@@ -1,5 +1,5 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
 
 def feel_(weather):
     if weather < 13:
@@ -73,14 +73,14 @@ def get_the_weather_of_khouribga():
 def description_function():
     print("""\033[1;33;40m
 
-            This a simple script for getting ,
-            the weather in three different cities in morocco.
+            This is a simple script for getting
+            the weather, in four different cities of morocco.
 
-            The cities are KHOURIBGA, AGADIR and AOULOUZ.
+            The cities are KHOURIBGA, AGADIR, AOULOUZ and TALIOUINE.
 
-            Just type the city name that you want 
+            Just type the name of the city that you want 
             to know its weather and you will get it or type all,
-            for getting the weather in the three cities.
+            for getting the weather of the four cities.
 
             Else if you're not interested type exit to exit.
 
