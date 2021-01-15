@@ -19,7 +19,7 @@ def get_the_weather_of_aoulouz():
     feel_aou = feel_(weather_aou)
     weather_aou = str(weather_aou) + ' °C'
     print(f"""\033[1;32;40m
-            THE WEATHER TODAY IN {city_aou}
+            THE WEATHER TODAY IN {city_aou.upper()}
         \033[1;36;40m
          AT {time_aou}, The tempeture is {weather_aou} , it's {feel_aou}
     """)
@@ -34,9 +34,24 @@ def get_the_weather_of_agadir():
     feel_aga = feel_(weather_aga)
     weather_aga = str(weather_aga) + ' °C'
     print(f"""\033[1;32;40m
-            THE WEATHER TODAY IN {city_aga}
+            THE WEATHER TODAY IN {city_aga.upper()}
         \033[1;36;40m
          AT {time_aga}, The tempeture is {weather_aga} , it's {feel_aga}
+    """)
+
+
+def get_the_weather_of_taliouine():
+    page_tal = requests.get("https://weather.com/weather/today/l/058a5daefc757883d93f0511fca47347f3efbc9da2306f7bda3c1f9c5a9385a6").text
+    soup_tal = BeautifulSoup(page_tal, "html.parser")
+    city_tal = soup_tal.find("div", class_ = 'CurrentConditions--header--3-4zi').h1.text.split(',')[0]
+    time_tal = soup_tal.find('div', class_ = "CurrentConditions--timestamp--1SWy5").text.split()[2] + ' ' + soup_tal.find('div', class_ = "CurrentConditions--timestamp--1SWy5").text.split()[3]
+    weather_tal = (int(soup_tal.find('span', class_ = 'CurrentConditions--tempValue--3KcTQ').text[:-1]) - 32) * 5//9
+    feel_tal = feel_(weather_tal)
+    weather_tal = str(weather_tal) + ' °C'
+    print(f"""\033[1;32;40m
+            THE WEATHER TODAY IN {city_tal.upper()}
+        \033[1;36;40m
+         AT {time_tal}, The tempeture is {weather_tal} , it's {feel_tal}
     """)
 
 
@@ -49,7 +64,7 @@ def get_the_weather_of_khouribga():
     feel_kh = feel_(weather_kh)
     weather_kh = str(weather_kh) + ' °C'
     print(f"""\033[1;32;40m
-            THE WEATHER TODAY IN {city_kh}
+            THE WEATHER TODAY IN {city_kh.upper()}
         \033[1;36;40m
          AT {time_kh}, The tempeture is {weather_kh} , it's {feel_kh}
     """)
@@ -70,6 +85,7 @@ def description_function():
             Else if you're not interested type exit to exit.
 
             ENJOY :)
+                                        \033[1;35;40m by : @paayk__
             \033[0;37;40m
     """)
 
@@ -77,6 +93,7 @@ def description_function():
 def _get_weather(which_city):
     if which_city.lower() == 'all':
         get_the_weather_of_aoulouz()
+        get_the_weather_of_taliouine()
         get_the_weather_of_agadir()
         get_the_weather_of_khouribga()
     elif which_city.lower() == 'agadir':
@@ -85,6 +102,8 @@ def _get_weather(which_city):
         get_the_weather_of_aoulouz()
     elif which_city.lower() == 'khouribga':
         get_the_weather_of_khouribga()
+    elif which_city.lower() == 'taliouine':
+        get_the_weather_of_taliouine()
 
 
 if __name__ == '__main__':
@@ -92,7 +111,7 @@ if __name__ == '__main__':
     which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
     if which_city == "exit":
         exit()
-    while which_city.lower() not in ["agadir", "khouribga", "aoulouz", "all"]:
+    while which_city.lower() not in ["agadir", "khouribga", "aoulouz","taliouine", "all"]:
         which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
         if which_city == 'exit':
             exit()
