@@ -75,15 +75,15 @@ def description_function():
 
 
 def _get_weather(which_city):
-    if which_city == 'all':
+    if which_city.lower() == 'all':
         get_the_weather_of_aoulouz()
         get_the_weather_of_agadir()
         get_the_weather_of_khouribga()
-    elif which_city == 'agadir':
+    elif which_city.lower() == 'agadir':
         get_the_weather_of_agadir()
-    elif which_city == 'aoulouz':
+    elif which_city.lower() == 'aoulouz':
         get_the_weather_of_aoulouz()
-    elif which_city == 'khouribga':
+    elif which_city.lower() == 'khouribga':
         get_the_weather_of_khouribga()
 
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
     if which_city == "exit":
         exit()
-    while which_city.lower() not in ["agadir", "khouribaga", "aoulouz", "all"]:
+    while which_city.lower() not in ["agadir", "khouribga", "aoulouz", "all"]:
         which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
         if which_city == 'exit':
             exit()
