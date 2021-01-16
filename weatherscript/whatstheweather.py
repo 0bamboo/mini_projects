@@ -71,23 +71,21 @@ def get_the_weather_of_khouribga():
 
 
 def description_function():
-    print("""\033[1;33;40m
-
-            This is a simple script for getting
-            the weather, in four different cities of morocco.
-
-            The cities are KHOURIBGA, AGADIR, AOULOUZ and TALIOUINE.
-
-            Just type the name of the city that you want 
-            to know its weather and you will get it or type all,
-            for getting the weather of the four cities.
-
-            Else if you're not interested type exit to exit.
-
-            ENJOY :)
-                                        \033[1;35;40m by : @paayk__
-            \033[0;37;40m
-    """)
+    print("\033[1;33;40m"
+        " _____________________________________________________________\n"
+        "|                                                             |\n"
+        "|  This is a simple script for getting                        |\n"
+        "|  the weather, in some  cities of morocco.                   |\n"
+        "|  The cities are KHOURIBGA, AGADIR, AOULOUZ and TALIOUINE.   |\n"
+        "|  Just type the name of the city that you want               |\n"  
+        "|  to know its weather and you will get it or type all,       |\n"
+        "|  for getting the weather of the all cities.                 |\n"   
+        "|                                                             |\n"
+        "|  Else if you're not interested type exit to exit.           |\n"
+        "|                                                             |\n"
+        "|  ENJOY :)                                                   |\n"   
+        "|                                \033[1;35;40m by : @paayk__  \033[1;33;40m             |\n"
+        "|_____________________________________________________________|   \033[0;37;40m")
 
 
 def _get_weather(which_city):
@@ -107,12 +105,15 @@ def _get_weather(which_city):
 
 
 if __name__ == '__main__':
-    description_function()
-    which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
-    if which_city == "exit":
-        exit()
-    while which_city.lower() not in ["agadir", "khouribga", "aoulouz","taliouine", "all"]:
-        which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
-        if which_city == 'exit':
+    try:
+        description_function()
+        which_city = input('\033[2;37;40m \n Enter the name of the city : \033[0;37;40m')
+        if which_city == "exit":
             exit()
-    _get_weather(which_city)
+        while which_city.lower() not in ["agadir", "khouribga", "aoulouz","taliouine", "all"]:
+            which_city = input('\033[2;37;40m Enter the name of the city : \033[0;37;40m')
+            if which_city == 'exit':
+                exit()
+        _get_weather(which_city)
+    except:
+        print('\033[1;31;40m \n There is some problem in your connection, Please check your connection first .\n')
