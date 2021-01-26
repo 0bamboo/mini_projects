@@ -20,32 +20,52 @@ try:
     #     tracks[item].click()
     #     time.sleep(2)
     # tracks[3].click()
+    discover_section = driver.find_element_by_class_name('discover-results')
+    print(discover_section.location)
     for elem in driver.find_elements_by_class_name('item-page'):
-        print(elem.text.lower().find('next'))
         if elem.text.lower().find('next') == 0:
-            print(elem.text.lower().find('next'))
             next_button = elem
     next_button.click()
     time.sleep(5)
-    tracks = driver.find_elements_by_class_name('discover-item')
-    print(len(tracks))
-    tracks[9].click()
+    # tracks = driver.find_elements_by_class_name('discover-item')
+    # print(len(tracks))
+    # THIS IS THE METHOD TO FILTER THE LIST OF TRACKS WHEN YOU PRESS NEXT BUTTON 
+    discover_section = driver.find_elements_by_class_name('discover-results')
+    print(discover_section.location)
+    #  WE USE THE METHOD LOCATION TO FIND THE COORDINATES OF DISCOVER SECTION THE RETURN VALUE IS A DICT {'x': xcoor, 'y': ycoor}
+    print(discover_section.location['x'])
+    left_x = discover_section.location['x']
+    print(discover_section.size['x'])
+    right_x = left_x + discover_section.size['width']
+    print(discover_section.size['width'])
+    discover_items = driver.find_element_by_class_name('discover-items')
+    tracks = list()
+    print(len(discover_items))
+    for item in discover_items:
+        if item.location['x'] >= left_x and item.location['x'] < right_x:
+            tracks.append(item)
+    print('im here')
+    print(len(tracks[0]))
+    tracks[0].click()
+
+
+    # tracks[9].click()
     # assert len(tracks) == 8
     # for item in range(8 * counter, len(tracks)):
     #     tracks[item].click()
     #     time.sleep(2)
-    next_button = [elem for elem in driver.find_elements_by_class_name('item-page') if elem.text.lower().find('next') > -1]
-    next_button[0].click()
-    time.sleep(5)
-    tracks = driver.find_elements_by_class_name('discover-item')
-    counter += 1
-    print(len(tracks))
+    # next_button = [elem for elem in driver.find_elements_by_class_name('item-page') if elem.text.lower().find('next') > -1]
+    # next_button[0].click()
+    # time.sleep(5)
+    # tracks = driver.find_elements_by_class_name('discover-item')
+    # counter += 1
+    # print(len(tracks))
     # for item in range(8 * counter, len(tracks)):
     #     tracks[item].click()
     #     time.sleep(2)
-    print(f'|{tracks[17]}|')
-    tracks[17].click()
-    print(type(next_button))
+    # print(f'|{tracks[17]}|')
+    # tracks[17].click()
+    # print(type(next_button))
 
 except:
     print('\n ERROR OCCURRED \n')
