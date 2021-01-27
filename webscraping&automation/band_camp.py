@@ -31,22 +31,43 @@ try:
     # print(len(tracks))
     # THIS IS THE METHOD TO FILTER THE LIST OF TRACKS WHEN YOU PRESS NEXT BUTTON 
     discover_section = driver.find_elements_by_class_name('discover-results')
-    print('1')
-    print('2')
+    print(discover_section)
     #  WE USE THE METHOD LOCATION TO FIND THE COORDINATES OF DISCOVER SECTION THE RETURN VALUE IS A DICT {'x': xcoor, 'y': ycoor}
-    print(discover_section[0].location['x'])
-    print('3')
+    print(f'This the discover_section location for x : {discover_section[0].location["x"]}')
     left_x = discover_section[0].location['x']
-    print('4')
     right_x = left_x + discover_section[0].size['width']
+    print(f'This the discover section size (width) : {right_x}')
     discover_items = driver.find_elements_by_class_name('discover-item')
-    tracks = list()
     print(type(discover_items))
+    tracks = list()
     for item in discover_items:
+        print(f'Item location x : {item.location["x"]} | {left_x} | {right_x}')
         if item.location['x'] >= left_x and item.location['x'] < right_x:
             tracks.append(item)
-    print('im here')
-    tracks[0].click()
+    tracks[3].click()
+    discover_section = driver.find_elements_by_class_name('discover-results')
+    item_page = driver.find_elements_by_class_name('item-page')
+    for item in item_page:
+        if item.text.lower().find('next') == 0:
+            next_button = item
+    next_button.click()
+    time.sleep(5)
+    print(len(tracks))
+    print(f'first one left_x : {left_x}')
+    left_x = discover_section[0].location['x']
+    print(f'second one left_x : {left_x}')
+    print(f'first one right_x: {right_x}')
+    right_x = left_x + discover_section[0].size['width']
+    print(f'second one right_x: {right_x}')
+    discover_items = driver.find_elements_by_class_name('discover-item')
+    tracks = []
+    for item in discover_items:
+        print(f'Item location x : {item.location["x"]} | {left_x} | {right_x}')
+        if item.location['x'] >= left_x and item.location['x'] < right_x:
+            tracks.append(item)
+    for item in tracks:
+        item.click()
+        time.sleep(3)
     print(len(tracks))
 
 
@@ -68,8 +89,8 @@ try:
     # tracks[17].click()
     # print(type(next_button))
 
-# except:
-#     print('\n ERROR OCCURRED \n')
+except:
+    print('\n ERROR OCCURRED \n')
 finally:
     time.sleep(10)
     driver.quit()
