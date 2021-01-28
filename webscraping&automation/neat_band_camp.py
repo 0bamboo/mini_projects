@@ -6,10 +6,12 @@ from threading import Thread
 from os.path import isfile
 import csv
 
-BAND_CAMP_LINK = 'https://bandcamp.com/'
-PATH = '/Users/abdait-m/Cdriver'
 
-class Band_leader():
+BAND_CAMP_LINK = 'https://bandcamp.com/'
+PATH = '/Users/abdait-m/Cdriver/chromedriver'
+
+
+class Band_Camp_Player():
     
     def __init__(self):
         # Create the browser
@@ -33,6 +35,7 @@ class Band_leader():
         discover_section = self.driver.find_element_by_class_name('discover-results')
         left_x = discover_section.location['x']
         right_x = discover_section.size['width'] + left_x
+        # print(discover_section.size['width'])
 
         # Filter the items in the list to include ony those we can click
         discover_items = self.driver.find_elements_by_class_name('discover-item')
@@ -40,7 +43,7 @@ class Band_leader():
 
         # Print the available tracks to the screen
         for (i, track) in enumerate(self.track_list):
-            print(f'[{i + 1}]')
+            print(f'[The track : {i + 1}]')
             lines = track.text.split('\n')
             print(f'Album : {lines[0]}')
             print(f'Artist : {lines[1]}')
@@ -59,23 +62,23 @@ class Band_leader():
         print()
 
 
-    def more_tracks(self, page = 'next')
-    ''' 
-        Advances the catalogue and repopulates the track list. to advance any of available pages.
-    '''
-    next_btn = [item for item in self.driver.find_element_by_class_name('item-page') if item.text.lower().strip() == str(page)]
+    def more_tracks(self, page = 'next'):
+        ''' 
+            Advances the catalogue and repopulates the track list. to advance any of available pages.
+        '''
+        next_btn = [item for item in self.driver.find_elements_by_class_name('item-page') if item.text.lower().strip() == str(page)]
 
-    # Or try this :
-    # for item in self.driver.find_element_by_class_name('item-page'):
-    #   if item.text.lower().find('next') == 0:
-    #       next_btn = item  
+        # Or try this :
+        # for item in self.driver.find_elements_by_class_name('item-page'):
+        #   if item.text.lower().find('next') == 0:
+        #       next_btn = item  
 
-    if next_btn:
-        next_btn[0].click()
-        self.tracks()
-    
+        if next_btn:
+            next_btn[0].click()
+            self.tracks()
+        
 
-    def play(self):
+    def play(self, track = None):
         '''
             Play a track. If no track number is supplied, the presently will play.
         '''
@@ -87,15 +90,15 @@ class Band_leader():
             self.track_list[self.current_track_nbr - 1].click()
     
 
-    def play_next(self):
+    def play_next(self, track = 1):
         '''
-        Plays the next available track
+        Plays the next 
         '''
         if self.current_track_nbr < len(self.track_list):
             self.play(self.current_track_nbr + 1)
         else:
             self.more_tracks()
-            self.play(1)
+            self.play(track)
     
 
     def pause(self):
@@ -103,5 +106,20 @@ class Band_leader():
         Pause the playback
         '''
         self.play()
+
+    
+    def exit(self):
+        sleep(3)
+        self.driver.quit()
     
 
+
+if __name__ == '__main__':
+    print(__name__)
+    test = Band_Camp_Player()
+    test.play(5)
+    sleep(2)
+    test.play_next()
+    test.exit()
+else:
+    print('Your not running the original file')
