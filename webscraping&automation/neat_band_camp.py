@@ -22,6 +22,9 @@ class Band_Camp_Player():
         self.current_track_nbr = 1
         self.track_list = []
         self.tracks()
+        self.play()
+        self.play_next()
+        self.exit()
 
     
     def tracks(self):
@@ -47,7 +50,7 @@ class Band_Camp_Player():
             lines = track.text.split('\n')
             print(f'Album : {lines[0]}')
             print(f'Artist : {lines[1]}')
-            if len(lines) > 1:
+            if len(lines) > 2:
                 print(f'Genre : {lines[2]}')
     
 
@@ -90,7 +93,7 @@ class Band_Camp_Player():
             self.track_list[self.current_track_nbr - 1].click()
     
 
-    def play_next(self, track = 1):
+    def play_next(self):
         '''
         Plays the next 
         '''
@@ -98,8 +101,29 @@ class Band_Camp_Player():
             self.play(self.current_track_nbr + 1)
         else:
             self.more_tracks()
-            self.play(track)
+            self.current_track_nbr = 0
+            self.play(self.current_track_nbr + 1)
     
+
+    # def play_each_song_for_little_bit_then_skip(self, time = 10, how_many_songs = 1):
+    #     '''
+    #         This function is for playing some songs for little bit of time , You get to choose how many seconds to play for a song ,
+    #         and how many songs you want to listen to . the first argument is for how many seconds for each song , and the second argument is for how many songs you want to listen to.
+    #     '''
+    #     try:
+    #         for song in range(how_many_songs):
+    #             print(f'**************{song}*************')
+    #             if song == 0:
+    #                 self.play()
+    #                 sleep(time)
+    #                 continue
+    #             self.play_next()
+    #             sleep(time)
+    #     except Exception as exc:
+    #         print(f'ERROR OCCURRED : {exc}')
+    #     finally:
+    #         self.exit()
+
 
     def pause(self):
         ''' 
@@ -117,9 +141,14 @@ class Band_Camp_Player():
 if __name__ == '__main__':
     print(__name__)
     test = Band_Camp_Player()
-    test.play(5)
+    # test.play_each_song_for_little_bit_then_skip(10, 3)
+    test.play()
+    for i in range(5,10):
+        sleep(2)
+        test.play_next() # something wrong with this function try to fix the error 
+        if i == 5:
+            test.pause()
     sleep(2)
-    test.play_next()
     test.exit()
 else:
     print('Your not running the original file')
