@@ -140,15 +140,18 @@ class Band_Camp_Player():
 
 if __name__ == '__main__':
     print(__name__)
-    test = Band_Camp_Player()
-    # test.play_each_song_for_little_bit_then_skip(10, 3)
-    test.play()
-    for i in range(5,10):
+    try:
+        test = Band_Camp_Player()
+        # test.play_each_song_for_little_bit_then_skip(10, 3)
+        test.play()
+        for i in range(5,10):
+            sleep(2)
+            test.play_next() # something wrong with this function try to fix the error 
+            if i == 5:
+                test.pause()
+    except Exception as exc:
         sleep(2)
-        test.play_next() # something wrong with this function try to fix the error 
-        if i == 5:
-            test.pause()
-    sleep(2)
-    test.exit()
+        print(f'ERROR OCCURRED : {exc}')
+    # test.exit()
 else:
     print('Your not running the original file')
