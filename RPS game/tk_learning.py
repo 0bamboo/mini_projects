@@ -70,43 +70,43 @@ border_effects = {
 # label_2 = Label(text = 'B', relief = SUNKEN)
 # label_2.grid(row = 1, column = 1, padx = 3, pady = 4)
 
-# ********* CREATE AN ADDRESS ENTRY FORM
+# # ********* CREATE AN ADDRESS ENTRY FORM
 
-f_ad_form = Frame(relief = SUNKEN, borderwidth = 3)
-f_ad_form.pack()
-f_button = Frame(relief = FLAT)
-f_button.pack()
-# FOR THE LABEL AND ENTRY OF THE FIRST NAME 
-label_first_name = Label(master = f_ad_form,  text = 'First Name :')
-entry_first_name = Entry(master = f_ad_form, width = 50)
+# f_ad_form = Frame(relief = SUNKEN, borderwidth = 3)
+# f_ad_form.pack()
+# f_button = Frame(relief = FLAT)
+# f_button.pack()
+# # FOR THE LABEL AND ENTRY OF THE FIRST NAME 
+# label_first_name = Label(master = f_ad_form,  text = 'First Name :')
+# entry_first_name = Entry(master = f_ad_form, width = 50)
 
-label_first_name.grid(row = 0, column = 0, sticky = 'e')
-entry_first_name.grid(row = 0, column = 1)
+# label_first_name.grid(row = 0, column = 0, sticky = 'e')
+# entry_first_name.grid(row = 0, column = 1)
 
-# FOR THE LABEL AND ENTRY OF THE LAST NAME 
-label_last_name = Label(master = f_ad_form, text = 'Last Name :')
-entry_last_name = Entry(master = f_ad_form, width = 50)
+# # FOR THE LABEL AND ENTRY OF THE LAST NAME 
+# label_last_name = Label(master = f_ad_form, text = 'Last Name :')
+# entry_last_name = Entry(master = f_ad_form, width = 50)
 
-label_last_name.grid(row = 1, column = 0, sticky = 'e')
-entry_last_name.grid(row = 1, column = 1)
+# label_last_name.grid(row = 1, column = 0, sticky = 'e')
+# entry_last_name.grid(row = 1, column = 1)
 
-label_gmail = Label(master = f_ad_form, text = 'Gmail :')
-entry_gmail = Entry(master = f_ad_form, width = 50)
+# label_gmail = Label(master = f_ad_form, text = 'Gmail :')
+# entry_gmail = Entry(master = f_ad_form, width = 50)
 
-label_gmail.grid(row = 2, column = 0)
-entry_gmail.grid(row = 2, column = 1)
+# label_gmail.grid(row = 2, column = 0)
+# entry_gmail.grid(row = 2, column = 1)
 
-label_phone = Label(master = f_ad_form, text = 'Phone Number :')
-entry_phone = Entry(master = f_ad_form, width = 50)
+# label_phone = Label(master = f_ad_form, text = 'Phone Number :')
+# entry_phone = Entry(master = f_ad_form, width = 50)
 
-label_phone.grid(row = 3, column = 0, sticky = 'e')
-entry_phone.grid(row = 3, column = 1)
+# label_phone.grid(row = 3, column = 0, sticky = 'e')
+# entry_phone.grid(row = 3, column = 1)
 
-button_clear = Button(master = f_button, text = 'Clear')
-button_clear.grid(row = 0, column = 2)
+# button_clear = Button(master = f_button, text = 'Clear')
+# button_clear.grid(row = 0, column = 2)
 
-button_submit = Button(master = f_button, text = 'Submit')
-button_submit.grid(row = 0, column = 4)
+# button_submit = Button(master = f_button, text = 'Submit')
+# button_submit.grid(row = 0, column = 4)
 # entry_value = StringVar()
 # entry = Entry(window, bg = 'white', fg = 'red', textvariable = entry_value)
 # if not entry_value:
@@ -115,4 +115,23 @@ button_submit.grid(row = 0, column = 4)
 #     print(entry_value)
 # entry.pack()
 
+# Handling key press {
+def handle_key_press(event):
+    print(event.char)
+
+window.bind('<Key>', handle_key_press)
+# }
+
+# Handling Button Click {
+def handle_click(event):
+    print('YOU HEAT ME  WITH LEFT BUTTON OF MOUSE !! YAMETE KUDASSAI :(')
+
+def handle_click_right(event):
+    print('YOU HEAT ME WITH RIGHT BUTTON OF MOUSE !! YAMETTEEEEEE ')
+
+button = Button(text = 'Heat me!')
+button.bind('<Button-1>', handle_click)
+button.bind('<Button-2>', handle_click_right)
+button.grid(sticky = 'n')
+# }
 window.mainloop()
