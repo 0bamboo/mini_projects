@@ -1,7 +1,6 @@
 from tkinter import *
 import random as  rd
 
-from tkinter import *
 
 # THE INITIALIZING OF THE WINDOW
 window = Tk()
@@ -20,7 +19,7 @@ window.title('NOTHING TO SEE HERE')
 
 # frame_b.pack()
 # frame_a.pack()
-
+print('hello from shell')
 border_effects = {
     'flat' : FLAT,
     'sunken' : SUNKEN,
@@ -170,18 +169,44 @@ border_effects = {
 
 # # }
 
-# Program that simulates rolling six-sided die {
-def roll():
-    lbl_roll['text'] = f'{rd.randrange(1, 7)}'
+# # Program that simulates rolling six-sided die {
+# def roll():
+#     lbl_roll['text'] = f'{rd.randrange(1, 7)}'
 
-window.rowconfigure([0, 1], minsize = 50, weight = 1)
-window.columnconfigure(0, minsize = 100, weight = 1)
+# window.rowconfigure([0, 1], minsize = 50, weight = 1)
+# window.columnconfigure(0, minsize = 100, weight = 1)
 
-btn_roll = Button(master = window, text = 'Roll', command = roll, relief = SUNKEN)
-btn_roll.grid(row = 0, column = 0, sticky = 'nsew')
+# btn_roll = Button(master = window, text = 'Roll', command = roll, relief = SUNKEN)
+# btn_roll.grid(row = 0, column = 0, sticky = 'nsew')
 
-random_die = f'{rd.randrange(1, 7)}'
-lbl_roll = Label(master = window, text = random_die, )
-lbl_roll.grid(row = 1, column = 0)
+# random_die = f'{rd.randrange(1, 7)}'
+# lbl_roll = Label(master = window, text = random_die, )
+# lbl_roll.grid(row = 1, column = 0)
+# #  }
+
+#  Program for temperature converter {
+
+def convert_to_f():
+    if not entry_value['text']:
+        entry_value['text'] = 0
+    lbl_result['text'] = int(entry_value['text']) + 10
+
+window.rowconfigure(0, minsize = 100, weight = 5)
+window.columnconfigure([0,1,2,3,4], minsize = 80, weight = 5)
+
+entry_value = Entry(master = window)
+entry_value.grid(row = 0, column = 0)
+
+lbl_f = Label(master = window, text = '\N{DEGREE FAHRENHEIT}')
+lbl_f.grid(row = 0, column = 1)
+
+btn_convert = Button(master = window, text = 'convert \N{RIGHTWARDS BLACK ARROW}', command = convert_to_f, relief = RAISED)
+btn_convert.grid(row = 0, column = 2)
+
+lbl_result = Label(master = window, text = '')
+lbl_result.grid(row = 0, column = 3)
+
+lbl_degree = Label(master = window, text = '\N{DEGREE CELSIUS}')
+lbl_degree.grid(row = 0, column = 4)
 
 window.mainloop()
