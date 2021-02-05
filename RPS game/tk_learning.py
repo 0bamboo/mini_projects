@@ -29,7 +29,6 @@ border_effects = {
     'ridge' : RIDGE,
 }
 
-
 # # THIS THE TYPES OF BORDER EFFECTS
 
 # for relief_name, relief in border_effects.items():
@@ -116,22 +115,73 @@ border_effects = {
 # entry.pack()
 
 # Handling key press {
-def handle_key_press(event):
-    print(event.char)
+# def handle_key_press(event):
+#     print(event.char)
 
-window.bind('<Key>', handle_key_press)
-# }
+# window.bind('<Key>', handle_key_press)
+# # }
 
-# Handling Button Click {
-def handle_click(event):
-    print('YOU HEAT ME  WITH LEFT BUTTON OF MOUSE !! YAMETE KUDASSAI :(')
+# # Handling Button Click {
+# def handle_click(event):
+#     print('YOU HEAT ME WITH LEFT BUTTON OF MOUSE !! YAMETE KUDASSAI :(')
 
-def handle_click_right(event):
-    print('YOU HEAT ME WITH RIGHT BUTTON OF MOUSE !! YAMETTEEEEEE ')
+# def handle_click_right(event):
+#     print('YOU HEAT ME WITH RIGHT BUTTON OF MOUSE !! YAMETTEEEEEE ')
 
-button = Button(text = 'Heat me!')
-button.bind('<Button-1>', handle_click)
-button.bind('<Button-2>', handle_click_right)
-button.grid(sticky = 'n')
-# }
+# def handle_click_middle(event):
+#     print('YOU HEAT ME WITH THE MIDDLE BUTTON OF THE MOUSE ...')
+
+# button = Button(text = 'Heat me!')
+# button.bind('<Button-1>', handle_click)
+# button.bind('<Button-2>', handle_click_right)
+# button.bind('<Button-3>', handle_click_middle)
+# button.pack()
+# # } 
+
+# # Counter application {
+# def increase():
+#     value = int(lbl_value['text'])
+#     lbl_value['text'] = f'{value + 1}'
+
+
+# def decrease():
+#     value = int(lbl_value['text'])
+#     lbl_value['text'] = f'{value - 1}'
+
+
+# def reset(): 
+#     lbl_value['text'] = '0'
+
+
+# window.rowconfigure(0, minsize = 50, weight = 1)
+# window.columnconfigure([0, 1, 2], minsize = 50, weight = 1)
+
+# btn_decrease = Button(master = window, text = '-', command = decrease, background = 'Black', fg = 'DarkTurquoise')
+# btn_decrease.grid(row = 0, column = 0, sticky = 'nsew')
+
+# lbl_value = Label(master = window, text = '0', background = 'Black', foreground = 'DarkTurquoise')
+# lbl_value.grid(row = 0, column = 1, sticky = 'nsew')
+
+# btn_increase = Button(master = window, text = '+', command = increase, background = 'Black', fg = 'DarkTurquoise')
+# btn_increase.grid(row = 0, column = 2, sticky = 'nsew')
+
+# btn_reset = Button(master = window, text = 'Reset', bg = 'red',command = reset)
+# btn_reset.grid(row = 1, column = 1, sticky = 'nsew')
+
+# # }
+
+# Program that simulates rolling six-sided die {
+def roll():
+    lbl_roll['text'] = f'{rd.randrange(1, 7)}'
+
+window.rowconfigure([0, 1], minsize = 50, weight = 1)
+window.columnconfigure(0, minsize = 100, weight = 1)
+
+btn_roll = Button(master = window, text = 'Roll', command = roll, relief = SUNKEN)
+btn_roll.grid(row = 0, column = 0, sticky = 'nsew')
+
+random_die = f'{rd.randrange(1, 7)}'
+lbl_roll = Label(master = window, text = random_die, )
+lbl_roll.grid(row = 1, column = 0)
+
 window.mainloop()
