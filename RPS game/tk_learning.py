@@ -19,7 +19,6 @@ window.title('NOTHING TO SEE HERE')
 
 # frame_b.pack()
 # frame_a.pack()
-print('hello from shell')
 border_effects = {
     'flat' : FLAT,
     'sunken' : SUNKEN,
@@ -211,9 +210,14 @@ border_effects = {
 
 # The example:
 # def convert_to_cel():
-#     fahr = ent_temperature.get()
-#     cel = (5 / 9) * (float(fahr) - 32)
-#     lbl_result['text'] = f'{round(cel, 2)}'
+#     try:
+#         fahr = ent_temperature.get()
+#         cel = (5 / 9) * (float(fahr) - 32)
+#         # lbl_result['text'] = f'{round(cel, 2)}'
+#         lbl_result.delete(0,'end')
+#         lbl_result.insert(0, f'{round(cel, 2)}')
+#     except Exception as exc:
+#         print(f'ERROR OCCURRED -> {exc}')
 
 
 # frm_entry = Frame(master = window)
@@ -226,7 +230,7 @@ border_effects = {
 # btn_convert = Button(
 #     master = window, text = '\N{RIGHTWARDS ARROW}', width = 5, command = convert_to_cel
 # )
-# lbl_result = Label(master = window, text = '', width = 10)
+# lbl_result = Entry(master = window, text = '', width = 10)
 # lbl_rsl_temp = Label(master = window, text = '\N{DEGREE CELSIUS}')
 
 # frm_entry.grid(row = 0, column = 0, padx = 10)
@@ -237,6 +241,22 @@ border_effects = {
 
 # Text editor program {
 
-frame_rigth_col = Frame(master = window)
+window.rowconfigure(0, minsize = 800, weight = 1)
+window.columnconfigure(1, minsize = 800, weight = 1)
+
+frame_right_col = Frame(master = window, bg = 'yellow')
+
+open_button = Button(frame_right_col, text = 'Open', width = 10)
+save_button = Button(frame_right_col, text = 'Save as', width = 10)
+
+open_button.grid(row = 0, column = 0, sticky = 'nsew')
+save_button.grid(row = 1, column = 0, sticky = 'nsew')
+
+frame_left_col = Frame(master = window)
+frame_right_col.grid(row = 0, column = 0)
+frame_left_col.grid(row = 0, column = 0)
+
+
+# }
 
 window.mainloop()
