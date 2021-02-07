@@ -244,17 +244,17 @@ border_effects = {
 window.rowconfigure(0, minsize = 800, weight = 1)
 window.columnconfigure(1, minsize = 800, weight = 1)
 
-frame_right_col = Frame(master = window, bg = 'yellow')
+frame_right_col = Frame(master = window, background = 'grey')
 
 open_button = Button(frame_right_col, text = 'Open', width = 10)
 save_button = Button(frame_right_col, text = 'Save as', width = 10)
 
-open_button.grid(row = 0, column = 0, sticky = 'nsew')
-save_button.grid(row = 1, column = 0, sticky = 'nsew')
+open_button.grid(row = 0, column = 0, sticky = 'ew', padx = 5, pady = 5)
+save_button.grid(row = 1, column = 0, sticky = 'ew', padx = 5, pady = 5)
 
 frame_left_col = Frame(master = window)
-frame_right_col.grid(row = 0, column = 0)
-frame_left_col.grid(row = 0, column = 0)
+frame_right_col.grid(row = 0, column = 0, sticky = 'ns')
+frame_left_col.grid(row = 0, column = 1, sticky = 'nsew')
 
 
 # }
