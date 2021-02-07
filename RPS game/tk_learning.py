@@ -184,29 +184,59 @@ border_effects = {
 # lbl_roll.grid(row = 1, column = 0)
 # #  }
 
-#  Program for temperature converter {
+# Program for temperature converter {
 
-def convert_to_f():
-    if not entry_value['text']:
-        entry_value['text'] = 0
-    lbl_result['text'] = int(entry_value['text']) + 10
+# def convert_to_f():
+#     entry = entry_value.get()
+#     lbl_result['text'] = f'{ round((5 / 9) * (float(entry) - 32), 2)}'
 
-window.rowconfigure(0, minsize = 100, weight = 5)
-window.columnconfigure([0,1,2,3,4], minsize = 80, weight = 5)
 
-entry_value = Entry(master = window)
-entry_value.grid(row = 0, column = 0)
+# window.rowconfigure(0, minsize = 100, weight = 0)
+# window.columnconfigure([0,1,2,3,4], minsize = 80, weight = 5)
 
-lbl_f = Label(master = window, text = '\N{DEGREE FAHRENHEIT}')
-lbl_f.grid(row = 0, column = 1)
+# entry_value = Entry(master = window)
+# entry_value.grid(row = 0, column = 0)
 
-btn_convert = Button(master = window, text = 'convert \N{RIGHTWARDS BLACK ARROW}', command = convert_to_f, relief = RAISED)
-btn_convert.grid(row = 0, column = 2)
+# lbl_f = Label(master = window, text = '\N{DEGREE FAHRENHEIT}')
+# lbl_f.grid(row = 0, column = 1)
 
-lbl_result = Label(master = window, text = '')
-lbl_result.grid(row = 0, column = 3)
+# btn_convert = Button(master = window, text = 'convert \N{RIGHTWARDS ARROW}', command = convert_to_f, relief = RAISED)
+# btn_convert.grid(row = 0, column = 2)
 
-lbl_degree = Label(master = window, text = '\N{DEGREE CELSIUS}')
-lbl_degree.grid(row = 0, column = 4)
+# lbl_result = Label(master = window, text = '')
+# lbl_result.grid(row = 0, column = 3)
+
+# lbl_degree = Label(master = window, text = '\N{DEGREE CELSIUS}')
+# lbl_degree.grid(row = 0, column = 4)
+
+# The example:
+# def convert_to_cel():
+#     fahr = ent_temperature.get()
+#     cel = (5 / 9) * (float(fahr) - 32)
+#     lbl_result['text'] = f'{round(cel, 2)}'
+
+
+# frm_entry = Frame(master = window)
+# ent_temperature = Entry(master = frm_entry, width = 10)
+# lbl_temp = Label(master = frm_entry, text = '\N{DEGREE FAHRENHEIT}')
+
+# ent_temperature.grid(row = 0, column = 0, sticky = 'e')
+# lbl_temp.grid(row = 0, column = 1, sticky = 'w')
+
+# btn_convert = Button(
+#     master = window, text = '\N{RIGHTWARDS ARROW}', width = 5, command = convert_to_cel
+# )
+# lbl_result = Label(master = window, text = '', width = 10)
+# lbl_rsl_temp = Label(master = window, text = '\N{DEGREE CELSIUS}')
+
+# frm_entry.grid(row = 0, column = 0, padx = 10)
+# btn_convert.grid(row = 0, column = 1, pady = 10)
+# lbl_result.grid(row = 0, column = 2, padx = 10)
+# lbl_rsl_temp.grid(row = 0, column = 3, padx = 10)
+# # }
+
+# Text editor program {
+
+frame_rigth_col = Frame(master = window)
 
 window.mainloop()
