@@ -243,25 +243,30 @@ border_effects = {
 # Text editor program {
 
 def open_file():
+
     """ Open a file for editing """
+
     filepath = askopenfilename(
-        filetypes = [('Text Files', '*.txt'), ('All Files', '*.*')]
+        filetypes = [('Text Files', '*.txt'), ('Python Files', '*.py'), ('All Files', '*.*')]
     )
     if not filepath:
         return
-    txt_edit.delete(1.0, END)
+    txt_edit.delete('1.0', END)
     with open(filepath, 'r') as inp_file:
-        txt = inp_file().read()
-        txt_edit.insert(END, txt)
+        txt = inp_file.read()
+        txt_edit.insert('1.0', txt)
     window.title(f'Simple Text Editor - {filepath}')
 
 def save_file():
+
     """Save the current file as a new file ."""
+
     filepath = asksaveasfilename(
-        defaulttextension = 'txt', 
-        filetypes = [('Text Files', '*.txt'), ('All Files', '*.*')]
+        defaultextension = 'txt', 
+        filetypes = [('Text Files', '*.txt'), ('Python Files', '*.py'), ('All Files', '*.*')]
     )
     if not filepath:
+        print('error')
         return
     with open(filepath, 'w') as output_file:
         text = txt_edit.get('1.0', END)
