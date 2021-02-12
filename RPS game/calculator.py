@@ -88,6 +88,5 @@ button_equal.grid(row = 4, column = 0, columnspan = 2)
 button_multi.grid(row = 4, column = 3)
 button_0.grid(row = 4, column = 2)
 
-
 # To launch the program 
 window.mainloop()
