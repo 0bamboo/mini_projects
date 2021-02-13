@@ -247,7 +247,9 @@ def open_file():
     """ Open a file for editing """
 
     filepath = askopenfilename(
-        filetypes = [('Text Files', '*.txt'), ('Python Files', '*.py'), ('All Files', '*.*')]
+        initialdir = '/Users/abdait-m/Desktop',
+        filetypes = [('Text Files', '*.txt'), ('Python Files', '*.py'), ('All Files', '*.*')],
+        title = 'filedialog'
     )
     if not filepath:
         return
