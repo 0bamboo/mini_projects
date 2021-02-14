@@ -70,10 +70,13 @@ example_entry.configure(state = 'readonly')
 
 example_entry.grid(row = 1, column = 0, columnspan = 3, padx = 20, pady = 15, ipadx = 5, ipady = 5)
 
-player_entry = Entry(frame)
+clicked = StringVar()
+clicked.set('Choose your option :')
+
+player_entry = OptionMenu(frame, clicked, 'Rock', 'Paper', 'Scissor')
 player_entry.grid(row = 3, column = 0, columnspan = 3, padx = 20, pady = 15, ipadx = 5, ipady = 5)
 count += 1
-start_label = Button(frame,text = 'Start', activebackground = 'yellow', command = lambda : who_is_the_winner(player_entry.get()))
+start_label = Button(frame,text = 'Start', activebackground = 'yellow', command = lambda : who_is_the_winner(clicked.get()))
 start_label.grid(row = 2, column = 0, columnspan = 3, padx = 20, pady = 15, ipadx = 10, ipady = 10)
 
 frame.grid(row = 0, column = 0, sticky = W+E+N+S, padx = 10, pady = 10)
