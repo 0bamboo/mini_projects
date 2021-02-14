@@ -5,16 +5,16 @@ import time as t
 
 
 # Create a class for the rps_game
-class Result_Popup_window():
+class Result_Popup_Window():
 
     def __init__(self, master_window):
         self.master_window = master_window
         self.child = Toplevel(master_window)
-        
 
 
 
-class RpsApp():
+
+class Rps_App():
 
     def __init__(self):
         self.window = Tk()
@@ -99,7 +99,7 @@ class RpsApp():
 
 
 
-app = RpsApp()
+app = Rps_App()
 app.runApp()
 
 
