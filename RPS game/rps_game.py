@@ -12,10 +12,13 @@ class Result_Popup_Window():
         self.text = text
         self.master_window = master_window
         self.child = Toplevel(master_window)
-        self.label = Label(self.child, text = self.text, font = ('Comic sans serif', 17))
-        self.label.grid(row = 0, column = 0, padx = 10, pady = 10, ipadx = 10, ipady = 10)
+        self.child.geometry('200x100')
+        self.child.resizable(0, 0)
+        self.child.configure(bg = '#00FA9A')
+        self.label = Label(self.child, text = self.text, font = ('Courier New', 23), bg = '#00FA9A', fg = '#2a3132')
+        self.label.grid(row = 0, column = 0, ipady = 5, ipadx = 5, sticky = E+W)
         # self.start.configure(state = 'readonly')
-        self.exit_button = Button(self.child, text = 'Exit', command = self.exit_child_window)
+        self.exit_button = Button(self.child, text = 'Exit', command = self.exit_child_window, fg = '#00FA9A', bg = '#2a3132', activeforeground = '#00FA9A', activebackground = '#2a3132')
         self.exit_button.grid(row = 1, column = 0, padx = 5, pady = 5, ipadx = 10, ipady = 10)
 
     def exit_child_window(self):
@@ -53,13 +56,16 @@ class Rps_App():
     def __init__(self,):
         self.window = Tk()
         self.window.title('R x P x S')
+        self.window.geometry('400x400')
         self.window.resizable(0, 0)
         self.window.configure(bg = '#2a3132')
 
         self.frame = LabelFrame(
             self.window,
             text = 'R P S :',
-            bg = '#00FA9A'
+            bg = '#00FA9A',
+            width = 600,
+            height = 600
             )
         self.frame_2 = Frame(self.window)
 
@@ -67,33 +73,31 @@ class Rps_App():
 
         self.first_label = Label(
             self.frame,
-            text = 'Welcome to RPS GAME ',
+            text = ' ROCK,PAPER,SCISSOR ',
             font = ('Courier New', 20),
             fg = '#00FA9A',
             bg = '#2a3132'
             )
 
-
-        self.example_entry = Entry(self.frame, width = 15)
-        self.example_entry.configure(state = 'readonly')
+        self.label_cmp = Label(self.frame, text = 'Computer choice :', font = ('Courier New', 10), bg = '#2a3132', fg = 'white', width = 17)
+        self.example_entry = Entry(self.frame, width = 15, font = ('Courier New', 12))
+        self.example_entry.configure({'background':'#2a3132', 'foreground':'#00FA9A'})
+        # self.example_entry.configure(state = 'readonly')
 
 
         clicked = StringVar()
-        clicked.set('Choose your option :')
-
-        self.player_entry = OptionMenu(self.frame, clicked, 'Rock', 'Paper', 'Scissor',)
-        # self.player_entry.configure(bg = '#2a3132')
+        clicked.set('Rock')
+        self.player_label = Label(self.frame, text = 'Player choice :', font = ('Courier New', 10), bg = '#2a3132', fg = 'white', width = 17)
+        self.player_entry = OptionMenu(self.frame, clicked, 'Rock', 'Paper', 'Scissor')
+        self.player_entry.configure(width = 15)
+        self.player_entry.configure({'background':'#2a3132', 'foreground':'#00FA9A', 'activebackground':'#2a3132', 'activeforeground':'#00FA9A', 'font':('Courier New', 12)})
         
-        self.start_label = Button(self.frame,text = 'Start', width = 7, bg = '#2a3132', fg = '#00FA9A', activebackground = '#2a3132', activeforeground = '#00FA9A', command = lambda : self.who_is_the_winner(clicked.get()))
-        self.exit_button = Button(self.frame_2, activebackground = '#2a3132', activeforeground = '#00FA9A', text = 'Exit', width = 7, comman = self.exitApp)
-        self.exit_button.grid(row = 0, column = 1, ipadx = 5, ipady = 5)
+        self.start_label = Button(self.frame,text = 'Start', width = 7, font = ('Courier New', 10), bg = '#2a3132', fg = '#00FA9A', activebackground = '#2a3132', activeforeground = '#00FA9A', command = lambda : self.who_is_the_winner(clicked.get()))
+        self.exit_button = Button(self.frame_2, activebackground = '#2a3132', font = ('Courier New', 10), activeforeground = '#00FA9A', text = 'Exit', width = 7, comman = self.exitApp)
         self.exit_button.configure(bg = '#2a3132', fg = '#00FA9A')
 
-        # button = CustomButton(self.frame_2, 100, 25, 'red')
-        # button.grid(row = 0, column = 0)
-
-        # self.window.grid_rowconfigure(0, weight = 1)
-        # self.window.grid_columnconfigure(0, weight = 1)
+        self.window.grid_rowconfigure(0, weight = 1)
+        self.window.grid_columnconfigure(0, weight = 1)
     
 
     def find_the_winner(self, player, rand_player):
@@ -103,11 +107,11 @@ class Rps_App():
         if (player.upper() == 'ROCK' and rand_player == 'SCISSOR') or\
         (player.upper() == 'PAPER' and rand_player == 'ROCK') or\
         (player.upper() == 'SCISSOR' and rand_player == 'PAPER'):
-            text = 'You win !!'
+            text = 'You won !!'
         elif (player.upper() == 'SCISSOR' and rand_player == 'ROCK') or\
         (player.upper() == 'ROCK' and rand_player == 'PAPER') or\
         (player.upper() == 'PAPER' and rand_player == 'SCISSOR'):
-            text = 'You lose !!'
+            text = 'You lost !!'
         elif (player.upper() == 'PAPER' and rand_player == 'PAPER') or\
         (player.upper() == 'ROCK' and rand_player == 'ROCK') or\
         (player.upper() == 'SCISSOR' and rand_player == 'SCISSOR'):
@@ -125,18 +129,21 @@ class Rps_App():
         self.example_entry.configure(state = 'normal')
         self.example_entry.delete(0, END)
         self.example_entry.insert(0, rand_player)
-        self.example_entry.configure(state = 'readonly')
+        # self.example_entry.configure({'background':'yellow', 'foreground':'red'})
+        # self.example_entry.configure(state = 'readonly')
 
 
     def runApp(self):
         """ This function starts the app """
-
+        self.label_cmp.grid(row = 1, column = 0)
         self.first_label.grid(row = 0, column = 0, columnspan = 3, padx = 20, pady = 15, sticky = W+E)
-        self.example_entry.grid(row = 1, column = 0, columnspan = 3, padx = 20, pady = 15, ipadx = 5, ipady = 5)
-        self.player_entry.grid(row = 3, column = 0, columnspan = 3, ipadx = 1, ipady = 1)
-        self.start_label.grid(row = 2, column = 0, columnspan = 3, padx = 20, pady = 15, ipadx = 10, ipady = 10)
+        self.example_entry.grid(row = 2, column = 0, columnspan = 3, pady = 5, ipadx = 5, ipady = 5)
+        self.player_label.grid(row = 4, column = 0)
+        self.player_entry.grid(row = 5, column = 0, columnspan = 3, pady = 5, ipadx = 5, ipady = 5)
+        self.start_label.grid(row = 3, column = 0, columnspan = 3, padx = 20, pady = 15, ipadx = 10, ipady = 10)
         self.frame.grid(row = 0, column = 0, sticky = W+E+N+S, padx = 10, pady = 10)
         self.frame_2.grid(row = 1, column = 0)
+        self.exit_button.grid(row = 0, column = 1, ipadx = 5, ipady = 5)
         self.window.mainloop()
     
 
