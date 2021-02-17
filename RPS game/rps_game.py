@@ -66,8 +66,6 @@ class Rps_App():
             text = 'You lost !!'
         elif player.upper() == rand_player:
             text = 'Draw'
-        else:
-            text = 'You entered a wrong option.'
         Result_Popup_Window(self.window, text, self.start_label, self.example_entry)
     
 
