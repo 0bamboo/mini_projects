@@ -1,59 +1,13 @@
 from tkinter import *
 import random as rd
 import time as t
-# from PIL import ImageTk,Image
 
 
 # Create a class for the rps_game
-class Result_Popup_Window():
-
-    def __init__(self, master_window, text, start):
-        self.start = start
-        self.text = text
-        self.master_window = master_window
-        self.child = Toplevel(master_window)
-        self.child.geometry('200x100')
-        self.child.resizable(0, 0)
-        self.child.configure(bg = '#00FA9A')
-        self.label = Label(self.child, text = self.text, font = ('Courier New', 23), bg = '#00FA9A', fg = '#2a3132')
-        self.label.grid(row = 0, column = 0, ipady = 5, ipadx = 5, sticky = E+W)
-        # self.start.configure(state = 'readonly')
-        self.exit_button = Button(self.child, text = 'Exit', command = self.exit_child_window, fg = '#00FA9A', bg = '#2a3132', activeforeground = '#00FA9A', activebackground = '#2a3132')
-        self.exit_button.grid(row = 1, column = 0, padx = 5, pady = 5, ipadx = 10, ipady = 10)
-
-    def exit_child_window(self):
-        self.start.configure(state = 'normal')
-        self.child.destroy()
-
-
-# class CustomButton(Canvas):
-#     def __init__(self, parent, width, height, color, command=None):
-#         Canvas.__init__(self, parent, borderwidth=1, 
-#             relief="raised", highlightthickness=0)
-#         self.command = command
-
-#         padding = 4
-#         id = self.create_oval((padding,padding,
-#             width+padding, height+padding), outline=color, fill=color)
-#         (x0,y0,x1,y1)  = self.bbox("all")
-#         width = (x1-x0) + padding
-#         height = (y1-y0) + padding
-#         self.configure(width=width, height=height)
-#         self.bind("<ButtonPress-1>", self._on_press)
-#         self.bind("<ButtonRelease-1>", self._on_release)
-
-#     def _on_press(self, event):
-#         self.configure(relief="sunken")
-
-#     def _on_release(self, event):
-#         self.configure(relief="raised")
-#         if self.command is not None:
-#             self.command()
-
-
 class Rps_App():
 
     def __init__(self,):
+        # Setting the components of the main window 
         self.window = Tk()
         self.window.title('R x P x S')
         self.window.geometry('400x400')
@@ -82,8 +36,6 @@ class Rps_App():
         self.label_cmp = Label(self.frame, text = 'Computer choice :', font = ('Courier New', 10), bg = '#2a3132', fg = 'white', width = 17)
         self.example_entry = Entry(self.frame, width = 15, font = ('Courier New', 12))
         self.example_entry.configure({'background':'#2a3132', 'foreground':'#00FA9A'})
-        # self.example_entry.configure(state = 'readonly')
-
 
         clicked = StringVar()
         clicked.set('Rock')
@@ -118,7 +70,7 @@ class Rps_App():
             text = 'Draw'
         else:
             text = 'You entered a wrong option.'
-        Result_Popup_Window(self.window, text, self.start_label)
+        Result_Popup_Window(self.window, text, self.start_label, self.example_entry)
     
 
     def who_is_the_winner(self, player):
@@ -129,12 +81,10 @@ class Rps_App():
         self.example_entry.configure(state = 'normal')
         self.example_entry.delete(0, END)
         self.example_entry.insert(0, rand_player)
-        # self.example_entry.configure({'background':'yellow', 'foreground':'red'})
-        # self.example_entry.configure(state = 'readonly')
-
 
     def runApp(self):
         """ This function starts the app """
+
         self.label_cmp.grid(row = 1, column = 0)
         self.first_label.grid(row = 0, column = 0, columnspan = 3, padx = 20, pady = 15, sticky = W+E)
         self.example_entry.grid(row = 2, column = 0, columnspan = 3, pady = 5, ipadx = 5, ipady = 5)
@@ -148,56 +98,37 @@ class Rps_App():
     
 
     def exitApp(self):
+        """ Exit the application """
+
         self.window.destroy()
 
 
+# This class is for the result window
+class Result_Popup_Window():
 
-app = Rps_App()
-app.runApp()
+    def __init__(self, master_window, text, start, entry):
+        # Setting all the components of the second window
+        self.start = start
+        self.text = text
+        self.entry = entry
+        self.master_window = master_window
+        self.child = Toplevel(master_window)
+        self.child.geometry('200x100')
+        self.child.resizable(0, 0)
+        self.child.configure(bg = '#00FA9A')
+        self.label = Label(self.child, text = self.text, font = ('Courier New', 23), bg = '#00FA9A', fg = '#2a3132')
+        self.label.grid(row = 0, column = 0, ipady = 5, ipadx = 5, sticky = E+W)
+        self.exit_button = Button(self.child, text = 'Exit', command = self.exit_child_window, fg = '#00FA9A', bg = '#2a3132', activeforeground = '#00FA9A', activebackground = '#2a3132')
+        self.exit_button.grid(row = 1, column = 0, padx = 5, pady = 5, ipadx = 10, ipady = 10)
+
+    def exit_child_window(self):
+        """ Delete the entry label of computer choice and, Exit the second window """
+
+        self.entry.delete(0, END)
+        self.start.configure(state = 'normal')
+        self.child.destroy()
 
 
-# import tkinter as tk
-# from tkinter.messagebox import showinfo
-
-# --- classes ---
-
-# class PopupWindow():
-
-#     def __init__(self, master):
-#         #self.master = master
-#         window = tk.Toplevel(master)
-
-#         label = tk.Label(window, text="Hello World!")
-#         label.pack(fill='x', padx=50, pady=5)
-
-#         button_close = tk.Button(window, text="Close", command=window.destroy)
-#         button_close.pack(fill='x')
-
-
-# class App():
-
-#     def __init__(self):
-#         self.root = tk.Tk()
-
-#         button_bonus = tk.Button(self.root, text="Window", command=self.popup_window)
-#         button_bonus.pack(fill='x')
-
-#         button_showinfo = tk.Button(self.root, text="ShowInfo", command=self.popup_showinfo)
-#         button_showinfo.pack(fill='x')
-
-#         button_close = tk.Button(self.root, text="Close", command=self.root.destroy)
-#         button_close.pack(fill='x')
-
-#     def run(self):
-#         self.root.mainloop()
-
-#     def popup_window(self):
-#         PopupWindow(self.root)
-
-#     def popup_showinfo(self):
-#         showinfo("ShowInfo", "Hello World!")
-
-# # --- main ---
-
-# app = App()
-# app.run()
+if __name__ == '__main__':
+    app = Rps_App()
+    app.runApp()
