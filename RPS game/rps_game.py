@@ -4,9 +4,9 @@ import time as t
 
 
 # Create a class for the rps_game
-class Rps_App():
+class Rps_App:
 
-    def __init__(self,):
+    def __init__(self):
         # Setting the components of the main window 
         self.window = Tk()
         self.window.title('R x P x S')
@@ -100,7 +100,7 @@ class Rps_App():
 
 
 # This class is for the result window
-class Result_Popup_Window():
+class Result_Popup_Window:
 
     def __init__(self, master_window, text, start, entry):
         # Setting all the components of the second window
