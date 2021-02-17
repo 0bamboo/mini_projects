@@ -64,9 +64,7 @@ class Rps_App():
         (player.upper() == 'ROCK' and rand_player == 'PAPER') or\
         (player.upper() == 'PAPER' and rand_player == 'SCISSOR'):
             text = 'You lost !!'
-        elif (player.upper() == 'PAPER' and rand_player == 'PAPER') or\
-        (player.upper() == 'ROCK' and rand_player == 'ROCK') or\
-        (player.upper() == 'SCISSOR' and rand_player == 'SCISSOR'):
+        elif player.upper() == rand_player:
             text = 'Draw'
         else:
             text = 'You entered a wrong option.'
