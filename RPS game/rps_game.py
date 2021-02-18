@@ -10,7 +10,7 @@ class Rps_App:
         # Setting the components of the main window 
         self.window = Tk()
         self.window.title('R x P x S')
-        self.window.geometry('400x400')
+        self.window.geometry('350x350')
         self.window.resizable(0, 0)
         self.window.configure(bg = '#2a3132')
 
@@ -33,20 +33,19 @@ class Rps_App:
             bg = '#2a3132'
             )
 
-        self.label_cmp = Label(self.frame, text = 'Computer choice :', font = ('Courier New', 10), bg = '#2a3132', fg = 'white', width = 17)
+        self.label_cmp = Label(self.frame, text = 'Computer choice :', font = ('Courier New Bold', 13), bg = '#00FA9A', fg = 'black', width = 17)
         self.example_entry = Entry(self.frame, width = 15, font = ('Courier New', 12))
         self.example_entry.configure({'background':'#2a3132', 'foreground':'#00FA9A'})
 
         clicked = StringVar()
         clicked.set('Rock')
-        self.player_label = Label(self.frame, text = 'Player choice :', font = ('Courier New', 10), bg = '#2a3132', fg = 'white', width = 17)
+        self.player_label = Label(self.frame, text = 'Player choice :', font = ('Courier New Bold', 13), bg = '#00FA9A', fg = 'black', width = 17)
         self.player_entry = OptionMenu(self.frame, clicked, 'Rock', 'Paper', 'Scissor')
         self.player_entry.configure(width = 15)
-        self.player_entry.configure({'background':'#2a3132', 'foreground':'#00FA9A', 'activebackground':'#2a3132', 'activeforeground':'#00FA9A', 'font':('Courier New', 12)})
+        self.player_entry.configure({'background':'#2A3132', 'foreground':'#00FA9A', 'activebackground':'#2A3132', 'activeforeground':'#00FA9A', 'font':('Courier New', 12)})
         
-        self.start_label = Button(self.frame,text = 'Start', width = 7, font = ('Courier New', 10), bg = '#2a3132', fg = '#00FA9A', activebackground = '#2a3132', activeforeground = '#00FA9A', command = lambda : self.who_is_the_winner(clicked.get()))
-        self.exit_button = Button(self.frame_2, activebackground = '#2a3132', font = ('Courier New', 10), activeforeground = '#00FA9A', text = 'Exit', width = 7, comman = self.exitApp)
-        self.exit_button.configure(bg = '#2a3132', fg = '#00FA9A')
+        self.start_label = Button(self.frame,text = 'Start', width = 7, font = ('Courier New Bold', 10), bg = '#2A3132', fg = 'DarkOliveGreen', activebackground = '#2a3132', activeforeground = '#00FA9A', command = lambda : self.who_is_the_winner(clicked.get()))
+        self.exit_button = Button(self.frame_2, bg = '#2A3132', fg = 'DarkOliveGreen', activebackground = '#2A3132', font = ('Courier New Bold', 10), activeforeground = '#00FA9A', text = 'Exit', width = 7, comman = self.exitApp)
 
         self.window.grid_rowconfigure(0, weight = 1)
         self.window.grid_columnconfigure(0, weight = 1)
@@ -77,6 +76,7 @@ class Rps_App:
         self.example_entry.configure(state = 'normal')
         self.example_entry.delete(0, END)
         self.example_entry.insert(0, rand_player)
+
 
     def runApp(self):
         """ This function starts the app """
