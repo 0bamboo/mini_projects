@@ -10,7 +10,7 @@ class Rps_App:
         # Setting the components of the main window 
         self.window = Tk()
         self.window.title('R x P x S')
-        self.window.geometry('350x350')
+        self.window.geometry('380x380')
         self.window.resizable(0, 0)
         self.window.configure(bg = '#2a3132')
 
